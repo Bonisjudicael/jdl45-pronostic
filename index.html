@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<title>JDL45 PRONOSTIC</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" aria-label="JDL45 PRONOSTIC accueil">
+    <span class="brand-mark">⚽<b>JDL45</b></span>
+    <span class="brand-text"><strong>JDL45</strong><b>PRONOSTIC</b><small><i></i> En ligne</small></span>
+  </a>
+  <div class="head-actions">
+    <button id="adminOpen" class="outline-btn">🔒 Connexion Admin</button>
+    <button id="themeToggle" class="theme-btn" aria-label="Changer de thème">☀️</button>
+  </div>
+</header>
+
+<main class="container">
+  <section class="welcome card">
+    <div class="round-icon">📣</div>
+    <div><h1>Bienvenue chez <span>JDL45 PRONOSTIC</span></h1><p>Écoutez le message vocal avant de nous contacter.</p></div>
+    <div class="ball-watermark">⚽</div>
+  </section>
+
+  <section class="card audio-card">
+    <div class="section-title"><span class="round-icon small">🎙</span> Message vocal</div>
+    <audio id="audio" preload="metadata"></audio>
+    <div id="audioEmpty" class="audio-empty">Le message vocal sera ajouté prochainement.</div>
+    <div id="audioControls" class="audio-controls hidden">
+      <button id="playBtn" class="play-btn" aria-label="Lire">▶</button>
+      <div class="track-wrap"><input id="seek" type="range" min="0" max="100" value="0"><div class="times"><span id="currentTime">0:00</span><span id="duration">0:00</span></div></div>
+      <select id="speed" aria-label="Vitesse de lecture"><option>1</option><option>1.5</option><option>2</option></select>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><span class="round-icon small">★</span> PLATEFORMES RECOMMANDÉES</div>
+    <div id="platforms" class="platform-list"></div>
+    <p id="platformEmpty" class="muted">Les plateformes et codes promo seront ajoutés ici.</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><span class="round-icon small">🔗</span> MES LIENS</div>
+    <div id="links" class="link-list"></div>
+    <p id="linksEmpty" class="muted">Les liens de communication seront ajoutés ici.</p>
+  </section>
+  <footer><div class="footer-line"><span>⚽</span></div><p>JDL45 PRONOSTIC <b>•</b> Liens utiles</p></footer>
+</main>
+
+<div id="adminModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+  <div class="modal-box">
+    <button class="close" id="closeAdmin" aria-label="Fermer">×</button>
+    <h2 id="adminTitle">Administration</h2>
+    <p class="muted">Connectez-vous pour gérer votre page.</p>
+    <form id="loginForm">
+      <label>Adresse e-mail<input id="email" type="email" autocomplete="username" required placeholder="votre@email.com"></label>
+      <label>Mot de passe<input id="password" type="password" autocomplete="current-password" required placeholder="Mot de passe"></label>
+      <button class="primary-btn" type="submit">Se connecter</button>
+    </form>
+    <p id="loginMessage" class="form-message"></p>
+    <div id="adminPanel" class="hidden">
+      <div class="admin-top"><h3>Tableau de bord</h3><button id="logout" class="text-btn">Déconnexion</button></div>
+      <p class="notice">Mode démonstration : les changements sont enregistrés sur cet appareil seulement. Configurez Supabase pour une administration sécurisée et partagée.</p>
+      <form id="platformForm" class="admin-form">
+        <h3>Ajouter une plateforme</h3>
+        <label>Nom<input id="pName" required placeholder="WINWINBET"></label>
+        <label>Code promo (facultatif)<input id="pCode" placeholder="Laisser vide si non disponible"></label>
+        <label>Lien d'inscription (facultatif)<input id="pUrl" type="url" placeholder="https://..."></label>
+        <button class="primary-btn">Ajouter la plateforme</button>
+      </form>
+      <div id="managePlatforms"></div>
+      <form id="linkForm" class="admin-form">
+        <h3>Ajouter un lien</h3>
+        <label>Nom du lien<input id="lName" required placeholder="Canal WhatsApp"></label>
+        <label>Adresse du lien<input id="lUrl" type="url" required placeholder="https://..."></label>
+        <label>Type<select id="lType"><option>WhatsApp</option><option>Messagerie anonyme</option><option>Facebook</option><option>Autre</option></select></label>
+        <button class="primary-btn">Ajouter le lien</button>
+      </form>
+      <div id="manageLinks"></div>
+      <form id="audioForm" class="admin-form">
+        <h3>Message vocal</h3>
+        <label>Lien public vers un fichier audio<input id="audioUrl" type="url" placeholder="https://..."></label>
+        <button class="primary-btn">Enregistrer le lien audio</button>
+        <button id="clearAudio" class="danger-btn" type="button">Retirer l'audio</button>
+      </form>
+    </div>
+    <p class="smallprint">Ne mettez pas de vrais mots de passe ou de données privées dans la version démo.</p>
+  </div>
+</div>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
